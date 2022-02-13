@@ -1,0 +1,9 @@
+body {
+  background: url(../img/background_light.png);
+}
+
+.slider:before {
+    background: url(../img/moon.png) white no-repeat;
+    background-size: cover;
+    place-content: center;
+}
