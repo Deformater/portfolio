@@ -1,9 +1,20 @@
-body {
-  background: url(../img/background_dark.png);
+body, html {
+  background: #ccc;
 }
 
-.slider:before {
-    background: url(../img/moon.png) white no-repeat;
-    background-size: cover;
-    place-content: center;
+.firstContainer {
+  background-color: #571a03;
+}
+
+.myProjectsContainer {
+  background-color: #2d2a2e;
+  color: white;
+}
+
+.myAchievementsContainer{
+  background-color: #e91848;
+}
+
+.thirdContainer {
+  background-color: #4891d9;
 }

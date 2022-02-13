@@ -1,0 +1,112 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+body, html {
+  background: white;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  transition: background .3s ease-out;
+  z-index: 1;
+}
+
+.firstContainer {
+  display: flex;
+  width: 100vw;
+  height: 30rem;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.firstContainer h1{
+}
+
+.firstContainer p{
+  color: white;
+  text-align: center;
+}
+
+.secondContainer {
+  display: flex;
+  width: 100vw;
+  height: 15rem;
+  text-align: center;
+}
+
+.myProjectsContainer {
+  display: flex;
+  width: 50%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.myAchievementsContainer {
+  display: flex;
+  width: 50%;
+  height: 100%;
+  color: white;
+  align-items: center;
+  justify-content: center;
+}
+
+.thirdContainer {
+  display: flex;
+  width: 100vw;
+  height: 15rem;
+  text-align: center;
+  color: #fdc5c9;
+  align-items: center;
+  justify-content: center;
+}
+
+/*Switch toggle*/
+.switch {
+  width: 2rem;
+  height: 1rem;
+  position: fixed;
+  bottom: 1vh;
+  left: 1vw;
+}
+
+.switch_content {
+  display: flex;
+  align-items: center;
+  background-color: #ccc;
+  border-radius: 500px;
+  width: 100%;
+  height: 100%;
+}
+
+.active {
+  background: #9EB3D4FF;
+}
+
+.active .switch_circle {
+  transform: translateX(1rem);
+}
+
+.switch_circle {
+  width: 40%;
+  height: 80%;
+  background-color: #aaa;
+  border-radius: 50%;
+  margin: .1rem;
+}
+
+.transition {
+  transition: background .3s;
+  transition: transform .3s;
+}
+
+
+@media(max-width: 650px){
+  body, html {
+    font-size: 25px
+  }
+}

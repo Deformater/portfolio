@@ -1,8 +1,20 @@
-let themeSwitch = document.getElementById('themeSwitch')
-themeSwitch.onchange = function () {
-    let theme = document.getElementById('theme')
-    if (themeSwitch.checked)
-        theme.href = '../static/css/light.css'
+let switchContent = document.querySelector('.switch_content')
+let switchCircle = document.querySelector('.switch_circle')
+
+switchContent.addEventListener('click', () => {
+    switchContent.classList.toggle('active')
+
+    switchContent.classList.add('transition')
+    switchCircle.classList.add('transition')
+    setTimeout(() => {
+        switchContent.classList.remove('transition')
+        switchCircle.classList.remove('transition')
+    }, 300)
+
+    let linkTheme = document.getElementById('link_theme')
+
+    if (switchContent.classList.contains('active'))
+        linkTheme.href = '../static/css/dark.css'
     else
-        theme.href = '../static/css/dark.css'
-}
+        linkTheme.href = '../static/css/light.css'
+})
