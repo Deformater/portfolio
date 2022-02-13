@@ -2,8 +2,20 @@ body, html {
   background: white;
 }
 
+header {
+  background: #FFFFFF;
+}
+
+.sideBar a{
+  color: black;
+}
+
 .firstContainer {
   background-color: #fcd1c0;
+}
+
+.firstContainer h1{
+  color: black;
 }
 
 .myProjectsContainer {

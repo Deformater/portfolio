@@ -2,8 +2,16 @@ body, html {
   background: #ccc;
 }
 
+header {
+  background: rgba(97, 97, 97, 0.3);
+}
+
+.sideBar a{
+  color: black;
+}
+
 .firstContainer {
-  background-color: #571a03;
+  background-color: #8c5240;
 }
 
 .myProjectsContainer {
@@ -12,9 +20,9 @@ body, html {
 }
 
 .myAchievementsContainer{
-  background-color: #e91848;
+  background-color: #780c1d;
 }
 
 .thirdContainer {
-  background-color: #4891d9;
+  background-color: #174768;
 }

@@ -11,13 +11,47 @@ body, html {
   align-items: center;
   font-size: 30px;
   transition: background .3s ease-out;
-  z-index: 1;
+  font-family: CourierNew, monospace;
 }
 
+/*nav header*/
+nav {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.menu {
+  margin-left: 60px;
+  margin-right: auto;
+}
+
+li, a {
+  display: inline-block;
+  text-decoration: none;
+  padding: 10px 5px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+li:not(:last-child) a {
+  margin-right: 15px;
+}
+
+/*Containers*/
 .firstContainer {
   display: flex;
   width: 100vw;
-  height: 30rem;
+  height: 100vh;
   align-items: center;
   justify-content: center;
   color: white;
@@ -40,10 +74,34 @@ body, html {
 
 .myProjectsContainer {
   display: flex;
+  flex-direction: column;
   width: 50%;
   height: 100%;
   align-items: center;
   justify-content: center;
+}
+
+.myProjectsContainer .IsAbsentImage {
+  background: url("../img/isAbsent.png") no-repeat;
+  background-size: cover;
+  height: 10rem;
+  width: 10rem;
+  z-index: 1;
+}
+
+.myProjectsContainer .smallTextContainer {
+  font-size: 15px;
+  text-align: left;
+  width: 10rem;
+  font-weight: normal;
+}
+
+.myProjectsContainer .bigTextContainer {
+  color: #e91848;
+  text-align: left;
+  width: 10rem;
+  font-weight: bold;
+  z-index: 2;
 }
 
 .myAchievementsContainer {
@@ -58,7 +116,8 @@ body, html {
 .thirdContainer {
   display: flex;
   width: 100vw;
-  height: 15rem;
+  min-height: 15rem;
+  height: 1vh;
   text-align: center;
   color: #fdc5c9;
   align-items: center;
@@ -108,5 +167,17 @@ body, html {
 @media(max-width: 650px){
   body, html {
     font-size: 25px
+  }
+}
+
+@media(max-width: 550px){
+  body, html {
+    font-size: 20px
+  }
+}
+
+@media(max-width: 410px){
+  body, html {
+    font-size: 15px
   }
 }
