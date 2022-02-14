@@ -75,12 +75,8 @@ li:not(:last-child) a {
 }
 
 .myProjectsContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
   width: 50%;
-  height: 100%;
-  align-items: center;
+  min-height: 15rem;
 }
 
 .projects {
@@ -117,7 +113,7 @@ li:not(:last-child) a {
 .myAchievementsContainer {
   display: flex;
   width: 50%;
-  height: 100%;
+  min-height: 15rem;
   color: white;
   align-items: center;
   justify-content: center;
