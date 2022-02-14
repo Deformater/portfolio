@@ -7,6 +7,10 @@
   overflow-x: hidden;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 body, html {
   background: white;
   justify-content: center;
@@ -67,7 +71,7 @@ li:not(:last-child) a {
 .secondContainer {
   display: flex;
   width: 100vw;
-  height: 15rem;
+  height:15rem;
 }
 
 .myProjectsContainer {
@@ -117,10 +121,40 @@ li:not(:last-child) a {
   color: white;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 .myAchievementsContainer a {
-  color: white;
+  color: black;
+}
+
+.myAchievementsContainer details {
+  background: white;
+  color: black;
+  width: 90%;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+.myAchievementsContainer summary {
+  padding: 10px;
+}
+
+.myAchievementsContainer summary:focus {
+  outline: none;
+}
+
+.myAchievementsContainer details ul {
+  background: #ddd;
+  margin: 0;
+  color: black;
+  padding: 10px;
+  border-radius: 0 0 4px 4px;
+}
+
+.myAchievementsContainer details li {
+  margin-left: 30px;
+  margin-top: 10px;
 }
 
 .myAchievementsContainer .bigTextContainer {

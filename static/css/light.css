@@ -14,7 +14,6 @@ header {
   color: black;
 }
 
-
 .firstContainer {
   background-color: #fcd1c0;
 }
@@ -30,6 +29,7 @@ header {
 .project {
   border: 1px solid #ececec;
   box-shadow: 10px 5px 5px #6f6f6f;
+  border-radius: 10px;
 }
 
 .myProjectsContainer .isAbsentImage {
