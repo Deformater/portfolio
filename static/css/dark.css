@@ -26,11 +26,15 @@ header {
 .myProjectsContainer .isAbsentImage {
   background: url("../img/IsAbsentDark.svg") no-repeat;
   background-size: cover;
+  height: 100%;
+  width: 100%;
 }
 
 .myProjectsContainer .randomAllImage {
   background: url("../img/RandomAllDark.svg") no-repeat;
   background-size: cover;
+  height: 100%;
+  width: 100%;
 }
 
 .myAchievementsContainer{
