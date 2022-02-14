@@ -3,12 +3,17 @@ body, html {
 }
 
 header {
-  background: rgba(97, 97, 97, 0.3);
+  background: #2d2a2e;
 }
 
 .sideBar a{
-  color: black;
+  color: white;
 }
+
+.sideBar h1{
+  color: white;
+}
+
 
 .firstContainer {
   background-color: #8c5240;

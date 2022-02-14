@@ -6,9 +6,14 @@ header {
   background: #FFFFFF;
 }
 
-.sideBar a{
+.sideBar a {
   color: black;
 }
+
+.sideBar h1 {
+  color: black;
+}
+
 
 .firstContainer {
   background-color: #fcd1c0;
