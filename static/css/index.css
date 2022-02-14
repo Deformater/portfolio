@@ -11,7 +11,7 @@ body, html {
   background: white;
   justify-content: center;
   align-items: center;
-  font-size: 30px;
+  font-size: 40px;
   transition: background .3s ease-out;
   font-family: CourierNew, monospace;
 }
@@ -23,6 +23,7 @@ nav {
   width: 95%;
   max-width: 1600px;
   margin: 0 auto;
+  height: auto;
 }
 
 .menu {
@@ -30,10 +31,12 @@ nav {
   margin-right: auto;
 }
 
-li, a {
+li {
   display: inline-block;
   text-decoration: none;
   padding: 10px 5px;
+  list-style-type: none;
+  vertical-align: middle;
 }
 
 ul {
@@ -41,9 +44,6 @@ ul {
   padding: 0;
 }
 
-li {
-  list-style-type: none;
-}
 
 li:not(:last-child) a {
   margin-right: 15px;
@@ -81,14 +81,18 @@ li:not(:last-child) a {
 
 .projects {
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-around;
 }
 
-.project {
+.project a{
   display: flex;
   flex-direction: column;
+  height: 10rem;
+  width: 10rem;
 }
 
 .myProjectsContainer .smallTextContainer {
@@ -104,18 +108,6 @@ li:not(:last-child) a {
   width: 100%;
   font-weight: bold;
   margin: .1rem .1rem;
-}
-
-.myProjectsContainer .isAbsentImage {
-  background-size: cover;
-  height: 10rem;
-  width: 10rem;
-}
-
-.myProjectsContainer .randomAllImage {
-  background-size: cover;
-  height: 10rem;
-  width: 10rem;
 }
 
 .myAchievementsContainer {
@@ -177,6 +169,30 @@ li:not(:last-child) a {
   transition: transform .3s;
 }
 
+
+@media(max-width: 2000px){
+  body, html {
+    font-size: 35px
+  }
+}
+
+@media(max-width: 1600px){
+  body, html {
+    font-size: 30px
+  }
+}
+
+@media(max-width: 1250px){
+  .projects{
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .secondContainer{
+    height: 25rem;
+  }
+
+}
 
 @media(max-width: 650px){
   body, html {
