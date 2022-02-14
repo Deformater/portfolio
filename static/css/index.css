@@ -3,6 +3,8 @@
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
+  transition: background .3s ease-out;
+  overflow-x: hidden;
 }
 
 body, html {
@@ -18,8 +20,8 @@ body, html {
 nav {
   display: flex;
   align-items: center;
-  width: 90%;
-  max-width: 1200px;
+  width: 95%;
+  max-width: 1600px;
   margin: 0 auto;
 }
 
@@ -57,9 +59,6 @@ li:not(:last-child) a {
   color: white;
 }
 
-.firstContainer h1{
-}
-
 .firstContainer p{
   color: white;
   text-align: center;
@@ -69,39 +68,54 @@ li:not(:last-child) a {
   display: flex;
   width: 100vw;
   height: 15rem;
-  text-align: center;
 }
 
 .myProjectsContainer {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   width: 50%;
   height: 100%;
   align-items: center;
-  justify-content: center;
 }
 
-.myProjectsContainer .IsAbsentImage {
-  background: url("../img/isAbsent.png") no-repeat;
-  background-size: cover;
-  height: 10rem;
-  width: 10rem;
-  z-index: 1;
+.projects {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.project {
+  display: flex;
+  flex-direction: column;
 }
 
 .myProjectsContainer .smallTextContainer {
   font-size: 15px;
   text-align: left;
-  width: 10rem;
+  width: 100%;
   font-weight: normal;
 }
 
 .myProjectsContainer .bigTextContainer {
   color: #e91848;
   text-align: left;
-  width: 10rem;
+  width: 100%;
   font-weight: bold;
-  z-index: 2;
+  margin: .1rem .1rem;
+}
+
+.myProjectsContainer .isAbsentImage {
+  background-size: cover;
+  height: 10rem;
+  width: 10rem;
+}
+
+.myProjectsContainer .randomAllImage {
+  background-size: cover;
+  height: 10rem;
+  width: 10rem;
 }
 
 .myAchievementsContainer {

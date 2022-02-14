@@ -22,6 +22,21 @@ header {
   background-color: #FFFFFF;
 }
 
+.project {
+  border: 1px solid #ececec;
+  box-shadow: 10px 5px 5px #6f6f6f;
+}
+
+.myProjectsContainer .isAbsentImage {
+  background: url("../img/IsAbsentLight.svg") no-repeat;
+  background-size: cover;
+}
+
+.myProjectsContainer .randomAllImage {
+  background: url("../img/RandomAllLight.svg") no-repeat;
+  background-size: cover;
+}
+
 .myAchievementsContainer {
   background-color: #e91848;
 }
