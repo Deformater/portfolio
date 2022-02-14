@@ -119,6 +119,14 @@ li:not(:last-child) a {
   justify-content: center;
 }
 
+.myAchievementsContainer a {
+  color: white;
+}
+
+.myAchievementsContainer .bigTextContainer {
+  text-align: left;
+}
+
 .thirdContainer {
   display: flex;
   width: 100vw;
