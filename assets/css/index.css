@@ -120,14 +120,19 @@ li:not(:last-child) a {
   flex-direction: column;
 }
 
-.myAchievementsContainer a {
-  color: black;
+.achievementDetails{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 91%;
+  min-height: 50%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .myAchievementsContainer details {
-  background: white;
-  color: black;
-  width: 90%;
+  width: 100%;
   border-radius: 10px;
   margin-bottom: 5px;
 }
@@ -141,8 +146,6 @@ li:not(:last-child) a {
 }
 
 .myAchievementsContainer details ul {
-  background: #ddd;
-  color: black;
   padding: 10px;
   border-radius: 0 0 4px 4px;
   margin-top: 10px

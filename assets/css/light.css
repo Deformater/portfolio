@@ -50,6 +50,20 @@ header {
   background-color: #e91848;
 }
 
+.myAchievementsContainer details {
+  background: white;
+  color: black;
+}
+
+.myAchievementsContainer details a{
+  color: black;
+}
+
+.myAchievementsContainer details ul {
+  background: #ddd;
+  color: black;
+}
+
 .thirdContainer {
   background-color: #4891d9;
 }

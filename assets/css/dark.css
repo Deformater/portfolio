@@ -47,6 +47,20 @@ header {
   background-color: #780c1d;
 }
 
+.myAchievementsContainer details {
+  background: #2d2a2e;
+  color: white;
+}
+
+.myAchievementsContainer details a{
+  color: white;
+}
+
+.myAchievementsContainer details ul {
+  background: #6c6a6a;
+  color: white;
+}
+
 .thirdContainer {
   background-color: #174768;
 }
