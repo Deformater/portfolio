@@ -142,19 +142,15 @@ li:not(:last-child) a {
 
 .myAchievementsContainer details ul {
   background: #ddd;
-  margin: 0;
   color: black;
   padding: 10px;
   border-radius: 0 0 4px 4px;
+  margin-top: 10px
 }
 
 .myAchievementsContainer details li {
   margin-left: 30px;
   margin-top: 10px;
-}
-
-.myAchievementsContainer .bigTextContainer {
-  text-align: left;
 }
 
 .thirdContainer {
@@ -170,8 +166,8 @@ li:not(:last-child) a {
 
 /*Switch toggle*/
 .switch {
-  width: 2rem;
-  height: 1rem;
+  width: 4rem;
+  height: 2rem;
   position: fixed;
   bottom: 1vh;
   left: 1vw;
@@ -191,7 +187,7 @@ li:not(:last-child) a {
 }
 
 .active .switch_circle {
-  transform: translateX(1rem);
+  transform: translateX(2rem);
 }
 
 .switch_circle {
@@ -199,7 +195,7 @@ li:not(:last-child) a {
   height: 80%;
   background-color: #aaa;
   border-radius: 50%;
-  margin: .1rem;
+  margin: .2rem;
 }
 
 .transition {
@@ -227,7 +223,7 @@ li:not(:last-child) a {
     justify-content: space-around;
   }
   .secondContainer{
-    height: 25rem;
+    min-height: 25rem;
   }
 
 }
