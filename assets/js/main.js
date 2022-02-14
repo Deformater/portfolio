@@ -14,7 +14,7 @@ switchContent.addEventListener('click', () => {
     let linkTheme = document.getElementById('link_theme')
 
     if (switchContent.classList.contains('active'))
-        linkTheme.href = '../static/css/dark.css'
+        linkTheme.href = '../assets/css/dark.css'
     else
-        linkTheme.href = '../static/css/light.css'
+        linkTheme.href = '../assets/css/light.css'
 })

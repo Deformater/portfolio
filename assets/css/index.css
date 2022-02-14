@@ -71,7 +71,7 @@ li:not(:last-child) a {
 .secondContainer {
   display: flex;
   width: 100vw;
-  height:15rem;
+  min-height:15rem;
 }
 
 .myProjectsContainer {
