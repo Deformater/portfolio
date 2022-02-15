@@ -19,6 +19,14 @@ switchContent.addEventListener('click', () => {
         linkTheme.href = 'assets/css/light.css'
 })
 
-if (window.matchMedia("(max-width: 1200)").matches) {
 
+let burgerMenuBtn = document.querySelector('.burgerMenuBtn')
+burgerMenuBtn.addEventListener('click', () => {
+    burgerMenuBtn.classList.toggle('active')
+})
+
+
+if (window.matchMedia("(max-width: 1200)").matches) {
+    console.log('anaaba')
+    burgerMenuBtn.classList.toggle('hidden')
 }
