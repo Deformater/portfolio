@@ -78,7 +78,7 @@ nav {
 }
 
 
-/*SideBar*/
+/*Sidebar*/
 .sideBar {
   display: flex;
   flex-direction: column;
@@ -93,12 +93,14 @@ nav {
 }
 
 .sideBar li {
-  padding: 1% 1% 1% 1%;
   text-align: left;
 }
+
 .sideBar li a {
-  height: auto;
-  width : auto;
+  display: block;
+  height: 100%;
+  width: 100%;
+  padding: 1% 1% 1% 1%;
 }
 
 /*First Section*/
@@ -289,6 +291,10 @@ nav {
   background-color: #aaa;
   border-radius: 50%;
   margin: .2rem;
+}
+
+.switch:hover {
+  cursor: pointer;
 }
 
 
