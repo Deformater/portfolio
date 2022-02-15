@@ -13,37 +13,9 @@
 
 body, html {
   background: white;
-  justify-content: center;
-  align-items: center;
   font-size: 40px;
   transition: background .3s ease-out;
   font-family: CourierNew, monospace;
-}
-
-
-/*Burger Menu Button*/
-.burgerMenuBtn {
-  display: inline-block;
-  cursor: pointer;
-  margin-left: auto;
-}
-
-.bar1, .bar2, .bar3 {
-  width: 35px;
-  height: 5px;
-  margin: 6px 0;
-  transition: 0.4s;
-  visibility: visible;
-}
-
-.active .bar1 {
-  transform: rotate(-45deg) translate(-9px, 6px);
-}
-
-.active .bar2 {opacity: 0;}
-
-.active .bar3 {
-  transform: rotate(45deg) translate(-8px, -8px);
 }
 
 /*navBar*/
@@ -79,24 +51,57 @@ nav {
 }
 
 
-/*SideBar*/
-.sidebar {
-  float: right;
-  height:100%;
-  width:200px;
-  background-color:#fff;
-  position: fixed !important;
-  z-index:1;
-  overflow:auto
+/*Burger Menu Button*/
+.burgerMenuBtn {
+  display: inline-block;
+  cursor: pointer;
+  margin-left: auto;
 }
 
-/*.sidebar ul {*/
-/*  display: flex;*/
-/*}*/
+.bar1, .bar2, .bar3 {
+  width: 35px;
+  height: 5px;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+.active .bar1 {
+  transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.active .bar2 {
+  opacity: 0;
+}
+
+.active .bar3 {
+  transform: rotate(45deg) translate(-8px, -8px);
+}
 
 
+/*SideBar*/
+.sideBar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
-/*Containers*/
+.sideBar ul {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: space-between;
+}
+
+.sideBar li {
+  padding: 1% 1% 1% 1%;
+  text-align: left;
+}
+.sideBar li a {
+  height: auto;
+  width : auto;
+}
+
+/*First Section*/
 .firstContainer {
   display: flex;
   width: 100vw;
@@ -111,6 +116,7 @@ nav {
   text-align: center;
 }
 
+/*Second Section*/
 .secondContainer {
   display: flex;
   width: 100vw;
@@ -204,12 +210,13 @@ nav {
   margin-right: 2%;
 }
 
+
+/*Third Section*/
 .thirdContainer {
   display: flex;
   width: 100vw;
   min-height: 100vh;
   height: auto;
-  color: #fdc5c9;
   align-items: center;
   justify-content: center;
   flex-direction: row;
@@ -284,6 +291,8 @@ nav {
   margin: .2rem;
 }
 
+
+/*Media qu*/
 @media(max-width: 2000px){
   body, html {
     font-size: 35px
@@ -353,6 +362,5 @@ nav {
 }
 
 .transition {
-  transition: background .3s;
   transition: transform .3s;
 }

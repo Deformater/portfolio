@@ -31,6 +31,8 @@ burgerMenuBtn.addEventListener('click', () => {
 function burgerMenuShow(mediaQuery) {
     if (mediaQuery.matches){
         burgerMenuBtn.classList.add('hidden')
+        burgerMenuBtn.classList.remove('active')
+        sideBar.classList.add('hidden')
 
         document.querySelector('.menu').classList.remove('hidden')
         document.querySelector('.social').classList.remove('hidden')

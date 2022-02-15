@@ -6,6 +6,7 @@ header {
   background: #2d2a2e;
 }
 
+/*Navbar*/
 .navBar a{
   color: white;
 }
@@ -14,14 +15,30 @@ header {
   color: white;
 }
 
+/*Burger menu button*/
 .bar1, .bar2, .bar3 {
   background-color: white;
 }
 
+/*Sidebar*/
+.sideBar{
+  background: #535253;
+}
+
+.sideBar li, a{
+  color: #929191;
+}
+
+.sideBar li:hover {
+  background-color: #747373;
+}
+
+/*First section*/
 .firstContainer {
   background-color: #8c5240;
 }
 
+/*Second section*/
 .myProjectsContainer {
   background-color: #2d2a2e;
   color: white;
@@ -64,10 +81,17 @@ header {
   color: white;
 }
 
+/*Third section*/
 .thirdContainer {
   background-color: #174768;
+  color: #fdc5c9;
 }
 
+.thirdContainer a{
+  color: #fdc5c9;
+}
+
+/*Switch toggle*/
 .switch_content {
   background-color: #535253;
 }
