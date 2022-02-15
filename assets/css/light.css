@@ -6,12 +6,16 @@ header {
   background: #FFFFFF;
 }
 
-.sideBar a {
+.navBar a {
   color: black;
 }
 
-.sideBar h1 {
+.navBar h1 {
   color: black;
+}
+
+.bar1, .bar2, .bar3 {
+  background-color: black;
 }
 
 .firstContainer {

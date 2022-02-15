@@ -20,46 +20,34 @@ body, html {
   font-family: CourierNew, monospace;
 }
 
+
+/*Burger Menu Button*/
 .burgerMenuBtn {
   display: inline-block;
   cursor: pointer;
-  opacity: 1;
   margin-left: auto;
 }
 
 .bar1, .bar2, .bar3 {
   width: 35px;
   height: 5px;
-  background-color: #333;
   margin: 6px 0;
   transition: 0.4s;
   visibility: visible;
 }
 
 .active .bar1 {
-  -webkit-transform: rotate(-45deg) translate(-9px, 6px);
   transform: rotate(-45deg) translate(-9px, 6px);
 }
 
 .active .bar2 {opacity: 0;}
 
 .active .bar3 {
-  -webkit-transform: rotate(45deg) translate(-8px, -8px);
   transform: rotate(45deg) translate(-8px, -8px);
 }
 
-
-.hidden {
-  visibility: hidden;
-  opacity: 0;
-  display: none;
-}
-
-/*nav header*/
+/*navBar*/
 nav {
-  transition-property: background-color, color;
-  transition-duration: 1s;
-  transition-timing-function: ease-out;
   display: flex;
   align-items: center;
   width: 95%;
@@ -68,12 +56,12 @@ nav {
   height: auto;
 }
 
-.menu {
+.navBar .menu {
   margin-left: 60px;
   margin-right: auto;
 }
 
-li {
+.navBar li {
   display: inline-block;
   text-decoration: none;
   padding: 10px 5px;
@@ -81,15 +69,32 @@ li {
   vertical-align: middle;
 }
 
-ul {
+.navBar ul {
   margin: 0;
   padding: 0;
 }
 
-
-li:not(:last-child) a {
+.navBar li:not(:last-child) a {
   margin-right: 15px;
 }
+
+
+/*SideBar*/
+.sidebar {
+  float: right;
+  height:100%;
+  width:200px;
+  background-color:#fff;
+  position: fixed !important;
+  z-index:1;
+  overflow:auto
+}
+
+/*.sidebar ul {*/
+/*  display: flex;*/
+/*}*/
+
+
 
 /*Containers*/
 .firstContainer {
@@ -279,12 +284,6 @@ li:not(:last-child) a {
   margin: .2rem;
 }
 
-.transition {
-  transition: background .3s;
-  transition: transform .3s;
-}
-
-
 @media(max-width: 2000px){
   body, html {
     font-size: 35px
@@ -296,7 +295,6 @@ li:not(:last-child) a {
     font-size: 30px
   }
 }
-
 
 @media(max-width: 650px){
   body, html {
@@ -346,4 +344,15 @@ li:not(:last-child) a {
   body, html {
     font-size: 10px
   }
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  display: none;
+}
+
+.transition {
+  transition: background .3s;
+  transition: transform .3s;
 }

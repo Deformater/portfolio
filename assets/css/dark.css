@@ -6,14 +6,17 @@ header {
   background: #2d2a2e;
 }
 
-.sideBar a{
+.navBar a{
   color: white;
 }
 
-.sideBar h1{
+.navBar h1{
   color: white;
 }
 
+.bar1, .bar2, .bar3 {
+  background-color: white;
+}
 
 .firstContainer {
   background-color: #8c5240;

@@ -21,19 +21,22 @@ switchContent.addEventListener('click', () => {
 
 
 let burgerMenuBtn = document.querySelector('.burgerMenuBtn')
+let sideBar = document.querySelector('.sideBar')
 burgerMenuBtn.addEventListener('click', () => {
     burgerMenuBtn.classList.toggle('active')
+    sideBar.classList.toggle('hidden')
 })
 
 
 function burgerMenuShow(mediaQuery) {
-    console.log(mediaQuery.matches)
     if (mediaQuery.matches){
         burgerMenuBtn.classList.add('hidden')
+
         document.querySelector('.menu').classList.remove('hidden')
         document.querySelector('.social').classList.remove('hidden')
     } else {
         burgerMenuBtn.classList.remove('hidden')
+
         document.querySelector('.menu').classList.add('hidden')
         document.querySelector('.social').classList.add('hidden')
     }
