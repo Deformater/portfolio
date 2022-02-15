@@ -197,12 +197,22 @@ li:not(:last-child) a {
   text-align: center;
 }
 
-.thirdContainer .aboutMeText {
+.aboutMeText p {
+  margin-top: 10%;
+}
+
+.aboutMeText {
+  margin: 5% 5% 5% 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.thirdContainer .aboutMeTextContainer {
   display: flex;
   width: 50%;
   height: 100%;
   align-items: center;
-  flex-direction: column;
   justify-content: center;
 }
 
@@ -212,7 +222,7 @@ li:not(:last-child) a {
   height: 2rem;
   position: fixed;
   bottom: 1vh;
-  left: 1vw;
+  right: 1vw;
 }
 
 .switch_content {
