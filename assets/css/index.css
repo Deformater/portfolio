@@ -273,6 +273,16 @@ li:not(:last-child) a {
   body, html {
     font-size: 25px
   }
+  .thirdContainer {
+    flex-direction: column-reverse;
+  }
+  .aboutMeTextContainer{
+    width: 100%;
+    height: 50%;
+  }
+  .myPhotoContainer {
+    width: 100%;
+  }
 }
 
 @media(max-width: 550px){
