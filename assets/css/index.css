@@ -21,12 +21,10 @@ body, html {
 }
 
 .burgerMenuBtn {
-  opacity: 0;
-}
-
-.visible .burgerMenuBtn {
   display: inline-block;
   cursor: pointer;
+  opacity: 1;
+  margin-left: auto;
 }
 
 .bar1, .bar2, .bar3 {
@@ -35,6 +33,7 @@ body, html {
   background-color: #333;
   margin: 6px 0;
   transition: 0.4s;
+  visibility: visible;
 }
 
 .active .bar1 {
@@ -49,6 +48,12 @@ body, html {
   transform: rotate(45deg) translate(-8px, -8px);
 }
 
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  display: none;
+}
 
 /*nav header*/
 nav {

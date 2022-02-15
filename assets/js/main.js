@@ -26,7 +26,19 @@ burgerMenuBtn.addEventListener('click', () => {
 })
 
 
-if (window.matchMedia("(max-width: 1200)").matches) {
-    console.log('anaaba')
-    burgerMenuBtn.classList.toggle('hidden')
+function burgerMenuShow(mediaQuery) {
+    console.log(mediaQuery.matches)
+    if (mediaQuery.matches){
+        burgerMenuBtn.classList.add('hidden')
+        document.querySelector('.menu').classList.remove('hidden')
+        document.querySelector('.social').classList.remove('hidden')
+    } else {
+        burgerMenuBtn.classList.remove('hidden')
+        document.querySelector('.menu').classList.add('hidden')
+        document.querySelector('.social').classList.add('hidden')
+    }
 }
+
+let trigger = window.matchMedia("(min-width: 1200px)")
+burgerMenuShow(trigger)
+trigger.addListener(burgerMenuShow)
