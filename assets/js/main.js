@@ -6,6 +6,7 @@ switchContent.addEventListener('click', () => {
 
     switchContent.classList.add('transition')
     switchCircle.classList.add('transition')
+
     setTimeout(() => {
         switchContent.classList.remove('transition')
         switchCircle.classList.remove('transition')
@@ -43,6 +44,7 @@ function burgerMenuShow(mediaQuery) {
         document.querySelector('.social').classList.add('hidden')
     }
 }
+
 
 let trigger = window.matchMedia("(min-width: 1200px)")
 burgerMenuShow(trigger)
