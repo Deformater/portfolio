@@ -18,3 +18,7 @@ switchContent.addEventListener('click', () => {
     else
         linkTheme.href = 'assets/css/light.css'
 })
+
+if (window.matchMedia("(max-width: 1200)").matches) {
+
+}
