@@ -160,8 +160,9 @@ li:not(:last-child) a {
 }
 
 .myAchievementsContainer details li {
-  margin-left: 30px;
-  margin-top: 10px;
+  margin-left: 2%;
+  margin-top: 2%;
+  margin-right: 2%;
 }
 
 .thirdContainer {
