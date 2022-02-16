@@ -1,3 +1,4 @@
+// Theme switch
 let switchContent = document.querySelector('.switch_content')
 let switchCircle = document.querySelector('.switch_circle')
 
@@ -20,7 +21,7 @@ switchContent.addEventListener('click', () => {
         linkTheme.href = 'assets/css/light.css'
 })
 
-
+// Burger menu click
 let burgerMenuBtn = document.querySelector('.burgerMenuBtn')
 let sideBar = document.querySelector('.sideBar')
 burgerMenuBtn.addEventListener('click', () => {
@@ -29,6 +30,7 @@ burgerMenuBtn.addEventListener('click', () => {
 })
 
 
+// Burger menu visibility
 function burgerMenuShow(mediaQuery) {
     if (mediaQuery.matches){
         burgerMenuBtn.classList.add('hidden')
