@@ -8,6 +8,7 @@
     <title>Portfolio</title>
 
     <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="../static/css/slider.css">
     <link rel="stylesheet" href="../static/css/light.css" id="link_theme">
 </head>
 <body>
@@ -53,22 +54,36 @@
         <h1 class="hidden">Achievement section</h1>
         <div class="myProjectsContainer">
             <div class="projects">
-                <article class="project">
-                    <h2 class="hidden">IsAbsent project</h2>
-                    <a href="https://github.com/IgorDuino/isabsent_api" target="_blank">
-                        <div class="isAbsentImage">
-                            <div class="bigTextContainer">IsAbsent<br>API&BOT</div>
-                        </div>
-                    </a>
-                </article>
-                <article class="project">
-                    <h2 class="hidden">RandomAll project</h2>
-                    <a href="https://github.com/Deformater/all_random" target="_blank">
-                        <div class="randomAllImage">
-                          <div class="bigTextContainer">RandomAll</div>
-                        </div>
-                    </a>
-                </article>
+                <!-- Основной блок слайдера -->
+                <div class="slider">
+                    <!-- Первый слайд -->
+                    <div class="item">
+                        <article class="project">
+                             <h2 class="hidden">IsAbsent project</h2>
+                             <a href="https://github.com/IgorDuino/isabsent_api" target="_blank">
+                                 <div class="isAbsentImage">
+                                     <div class="bigTextContainer">IsAbsent<br>API&BOT</div>
+                                 </div>
+                             </a>
+                         </article>
+                    </div>
+
+                    <!-- Второй слайд -->
+                    <div class="item">
+                        <article class="project">
+                             <h2 class="hidden">RandomAll project</h2>
+                                <a href="https://github.com/Deformater/all_random" target="_blank">
+                                    <div class="randomAllImage">
+                                      <div class="bigTextContainer">RandomAll</div>
+                                    </div>
+                                </a>
+                         </article>
+                    </div>
+
+                    <!-- Кнопки-стрелочки -->
+                    <a class="previous" onclick="previousSlide()">&#10094;</a>
+                    <a class="next" onclick="nextSlide()">&#10095;</a>
+                </div>
             </div>
         </div>
 
@@ -124,5 +139,7 @@
     </div>
 
 <script src="../static/js/main.js"></script>
+<script src="../static/js/slider.js"></script>
+<script>new Sim()</script>
 </body>
 </html>
