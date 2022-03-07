@@ -17,10 +17,10 @@ function currentSlide(n) {
     showSlides(slideIndex = n);
 }
 
-/* Функция перелистывания */
+
 function showSlides(n) {
     let i;
-    let slides = document.getElementsByClassName("item");
+    let slides = document.getElementsByClassName("project");
     
     if (n > slides.length) {
       slideIndex = 1
@@ -28,8 +28,7 @@ function showSlides(n) {
     if (n < 1) {
         slideIndex = slides.length
     }
-  
-  /* Проходим по каждому слайду в цикле for */
+
     for (let slide of slides) {
         slide.style.display = "none";
     }   

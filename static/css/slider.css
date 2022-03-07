@@ -1,44 +1,30 @@
-/* Слайдер */
 .slider{
-    max-width: 90%;
     position: relative;
-    margin: auto;
-    height: 300px;
 }
-/* Картинка масштабируется по отношению к родительскому элементу */
-.slider .item img {
-    object-fit: cover;
-    width: 100%;
-    height: 300px;
-}
-/* Кнопки вперед и назад */
+
 .slider .previous, .slider .next {
     cursor: pointer;
     position: absolute;
     top: 50%;
     width: auto;
     margin-top: -22px;
-    padding: 16px;
-    color: black;
+    padding: 0.8rem;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 0.8rem;
     transition: 0.6s ease;
     border-radius: 0 3px 3px 0;
 }
+
 .slider .next {
     right: 0;
     border-radius: 3px 0 0 3px;
 }
-/* При наведении на кнопки добавляем фон кнопок */
-.slider .previous:hover,
-.slider .next:hover {
-    background-color: rgba(0, 0, 0, 0.2);
-}
-/* Анимация слайдов */
-.slider .item {
+
+.slider .project {
     animation-name: fade;
     animation-duration: 1.5s;
 }
+
 @keyframes fade {
     from {
         opacity: 0.4

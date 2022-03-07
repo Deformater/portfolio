@@ -44,23 +44,28 @@ header {
   color: white;
 }
 
-.project {
-  border: 1px solid #7f7878;
+.slider {
   border-radius: 10px;
+  border: 1px solid #7f7878;
+}
+
+.slider .previous:hover,
+.slider .next:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.slider .previous, .slider .next {
+  color: white;
 }
 
 .myProjectsContainer .isAbsentImage {
   background: url("../img/IsAbsentDark.svg") no-repeat;
   background-size: cover;
-  height: 100%;
-  width: 100%;
 }
 
 .myProjectsContainer .randomAllImage {
   background: url("../img/RandomAllDark.svg") no-repeat;
   background-size: cover;
-  height: 100%;
-  width: 100%;
 }
 
 .myAchievementsContainer{

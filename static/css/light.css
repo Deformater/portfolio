@@ -47,24 +47,29 @@ header {
   background-color: #FFFFFF;
 }
 
-.project {
-  border: 1px solid #ececec;
+.slider {
   box-shadow: 10px 5px 5px #6f6f6f;
   border-radius: 10px;
+  border: 1px solid #ececec;
+}
+
+.slider .previous:hover,
+.slider .next:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.slider .previous, .slider .next {
+  color: black;
 }
 
 .myProjectsContainer .isAbsentImage {
   background: url("../img/IsAbsentLight.svg") no-repeat;
   background-size: cover;
-  height: 10rem;
-  width: 10rem;
 }
 
 .myProjectsContainer .randomAllImage {
   background: url("../img/RandomAllLight.svg") no-repeat;
   background-size: cover;
-  height: 100%;
-  width: 100%;
 }
 
 .myAchievementsContainer {
