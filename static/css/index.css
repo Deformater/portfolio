@@ -84,6 +84,7 @@ nav {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow-y: hidden;
 }
 
 .sideBar ul {
@@ -225,7 +226,7 @@ nav {
   min-height: 100vh;
   height: auto;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   flex-direction: row;
 }
 
