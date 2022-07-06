@@ -5,6 +5,7 @@
   text-decoration: none;
   transition: background .3s ease-out;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 ::-webkit-scrollbar {
