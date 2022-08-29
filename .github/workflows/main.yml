@@ -1,0 +1,25 @@
+name: deploy on cupsoft server
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  pass-secrets-to-workflow:
+    uses: ./.github/workflows/called-workflow.yml
+    secrets: inherit
+  
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: chaplyk/docker-compose-remote-action@v1.1
+        with:
+          ssh_host: cupsoft.ru
+          ssh_user: gribok
+          ssh_port: ${{ secrets.SSH_PORT }}
+          ssh_key: ${{ secrets.SSH_KEY }}
+          compose_file: docker-compose.yml
+          pull: true
+          build: true
