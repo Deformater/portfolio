@@ -1,0 +1,101 @@
+body, html {
+  background: white;
+}
+
+header {
+  background: #FFFFFF;
+}
+
+/*Navbar*/
+.navBar a {
+  color: black;
+}
+
+.navBar h1 {
+  color: black;
+}
+
+/*Burger menu button*/
+.bar1, .bar2, .bar3 {
+  background-color: black;
+}
+
+/*Sidebar*/
+.sideBar{
+  background: #ddd;
+}
+
+.sideBar li, a{
+  color: #636363;
+}
+
+.sideBar li:hover {
+  background-color: #a7a4a4;
+}
+
+/*First section*/
+.firstContainer {
+  background-color: #fcd1c0;
+}
+
+.firstContainer h2{
+  color: black;
+}
+
+/*Second section*/
+.myProjectsContainer {
+  background-color: #FFFFFF;
+}
+
+.project {
+  border: 1px solid #ececec;
+  box-shadow: 10px 5px 5px #6f6f6f;
+  border-radius: 10px;
+}
+
+.myProjectsContainer .isAbsentImage {
+  background: url("../img/IsAbsentLight.svg") no-repeat;
+  background-size: cover;
+  height: 10rem;
+  width: 10rem;
+}
+
+.myProjectsContainer .randomAllImage {
+  background: url("../img/RandomAllLight.svg") no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.myAchievementsContainer {
+  background-color: #e91848;
+}
+
+.myAchievementsContainer details {
+  background: white;
+  color: black;
+}
+
+.myAchievementsContainer details a{
+  color: black;
+}
+
+.myAchievementsContainer details ul {
+  background: #ddd;
+  color: black;
+}
+
+/*Third section*/
+.thirdContainer {
+  background-color: #4891d9;
+  color: #fdc5c9;
+}
+
+.thirdContainer a{
+  color: #fdc5c9;
+}
+
+/*Switch toggle*/
+.switch_content {
+  background-color: #ccc;
+}

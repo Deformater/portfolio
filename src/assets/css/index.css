@@ -1,0 +1,372 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  transition: background .3s ease-out;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+body, html {
+  background: white;
+  font-size: 40px;
+  transition: background .3s ease-out;
+  font-family: CourierNew, monospace;
+}
+
+/*navBar*/
+nav {
+  display: flex;
+  align-items: center;
+  width: 95%;
+  max-width: 1600px;
+  margin: 0 auto;
+  height: auto;
+}
+
+.navBar .menu {
+  margin-left: 60px;
+  margin-right: auto;
+}
+
+.navBar li {
+  display: inline-block;
+  text-decoration: none;
+  padding: 10px 5px;
+  list-style-type: none;
+  vertical-align: middle;
+}
+
+.navBar ul {
+  margin: 0;
+  padding: 0;
+}
+
+.navBar li:not(:last-child) a {
+  margin-right: 15px;
+}
+
+
+/*Burger Menu Button*/
+.burgerMenuBtn {
+  display: inline-block;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.bar1, .bar2, .bar3 {
+  width: 35px;
+  height: 5px;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+.active .bar1 {
+  transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.active .bar2 {
+  opacity: 0;
+}
+
+.active .bar3 {
+  transform: rotate(45deg) translate(-8px, -8px);
+}
+
+
+/*Sidebar*/
+.sideBar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sideBar ul {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: space-between;
+}
+
+.sideBar li {
+  text-align: left;
+}
+
+.sideBar li a {
+  display: block;
+  height: 100%;
+  width: 100%;
+  padding: 1% 1% 1% 1%;
+}
+
+/*First Section*/
+.firstContainer {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.firstContainer p{
+  color: white;
+  text-align: center;
+}
+
+/*Second Section*/
+.secondContainer {
+  display: flex;
+  width: 100vw;
+  min-height:100vh;
+}
+
+.myProjectsContainer {
+  width: 50%;
+  min-height: 15rem;
+}
+
+.projects {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.project {
+  margin: 5% 5% 5% 5%;
+}
+
+.project a{
+  display: flex;
+  flex-direction: column;
+  height: 10rem;
+  width: 10rem;
+}
+
+.myProjectsContainer .smallTextContainer {
+  font-size: 15px;
+  text-align: left;
+  width: 100%;
+  font-weight: normal;
+}
+
+.myProjectsContainer .bigTextContainer {
+  color: #e91848;
+  text-align: left;
+  width: 100%;
+  font-weight: bold;
+  margin: .1rem .1rem;
+}
+
+.myAchievementsContainer {
+  display: flex;
+  width: 50%;
+  min-height: 15rem;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.achievementDetails{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 91%;
+  min-height: 50%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.myAchievementsContainer details {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+.myAchievementsContainer summary {
+  padding: 10px;
+}
+
+.myAchievementsContainer summary:focus {
+  outline: none;
+}
+
+.myAchievementsContainer details ul {
+  padding: 10px;
+  border-radius: 0 0 4px 4px;
+  margin-top: 10px
+}
+
+.myAchievementsContainer details li {
+  margin-left: 2%;
+  margin-top: 2%;
+  margin-right: 2%;
+}
+
+
+/*Third Section*/
+.thirdContainer {
+  display: flex;
+  width: 100vw;
+  min-height: 100vh;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.thirdContainer .myPhotoContainer {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.thirdContainer .myPhotoImage {
+  margin: 5% 5% 5% 5%;
+  background: url('../img/myPhoto.jpg');
+  background-size: cover;
+  border-radius: 10px;
+  height: 15rem;
+  width: 15rem;
+}
+
+.aboutMeText h2 {
+  text-align: center;
+}
+
+.aboutMeText p {
+  margin-top: 10%;
+}
+
+.aboutMeText {
+  margin: 5% 5% 5% 5%;
+  display: flex;
+  flex-direction: column;
+}
+
+.thirdContainer .aboutMeTextContainer {
+  display: flex;
+  width: 50%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+/*Switch toggle*/
+.switch {
+  width: 4rem;
+  height: 2rem;
+  position: fixed;
+  bottom: 1vh;
+  right: 1vw;
+}
+
+.switch_content {
+  display: flex;
+  align-items: center;
+  border-radius: 500px;
+  width: 100%;
+  height: 100%;
+}
+
+.active .switch_circle {
+  transform: translateX(2rem);
+}
+
+.switch_circle {
+  width: 40%;
+  height: 80%;
+  background-color: #aaa;
+  border-radius: 50%;
+  margin: .2rem;
+}
+
+.switch:hover {
+  cursor: pointer;
+}
+
+
+/*Media qu*/
+@media(max-width: 2000px){
+  body, html {
+    font-size: 35px
+  }
+}
+
+@media(max-width: 1600px){
+  body, html {
+    font-size: 30px
+  }
+}
+
+@media(max-width: 650px){
+  body, html {
+    font-size: 25px
+  }
+  .thirdContainer {
+    flex-direction: column-reverse;
+  }
+  .aboutMeTextContainer{
+    width: 100%;
+    height: 50%;
+  }
+  .myPhotoContainer {
+    width: 100%;
+  }
+  .secondContainer {
+    flex-direction: column;
+    min-height: 10rem;
+  }
+  .myAchievementsContainer{
+    width: 100%;
+    height: auto;
+  }
+  .myProjectsContainer{
+    width: 100%;
+    min-height: 10rem;
+  }
+  .projects{
+    flex-direction: row;
+    height: 100%;
+  }
+}
+
+@media(max-width: 550px){
+  body, html {
+    font-size: 20px
+  }
+}
+
+@media(max-width: 410px){
+  body, html {
+    font-size: 15px
+  }
+}
+
+@media(max-width: 350px){
+  body, html {
+    font-size: 10px
+  }
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  display: none;
+}
+
+.transition {
+  transition: transform .3s;
+}

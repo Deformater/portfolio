@@ -1,0 +1,9 @@
+services:
+  client:
+    image: nginx
+    restart: always
+    ports:
+      - 8754:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./src:/usr/share/nginx/html
