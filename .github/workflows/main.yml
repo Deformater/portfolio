@@ -9,12 +9,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: chaplyk/docker-compose-remote-action@v1.1
-        with:
-          ssh_host: cupsoft.ru:${{ secrets.SSH_PORT }}
-          ssh_user: gribok
-          ssh_key: ${{ secrets.SSH_KEY }}
-          compose_file: docker-compose.yml
-          pull: true
-          build: false
+    - uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.SSH_PORT }}
+        script: cd portfolio && git pull
