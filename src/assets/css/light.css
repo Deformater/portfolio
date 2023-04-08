@@ -67,6 +67,13 @@ header {
   width: 100%;
 }
 
+.myProjectsContainer .webeyeImage {
+  background: url("../img/WebeyeLight.svg") no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
 .myAchievementsContainer {
   background-color: #e91848;
 }

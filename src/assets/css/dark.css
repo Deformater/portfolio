@@ -35,7 +35,7 @@ header {
 
 /*First section*/
 .firstContainer {
-  background-color: #8c5240;
+  background-color: #863b3b;
 }
 
 /*Second section*/
@@ -45,7 +45,6 @@ header {
 }
 
 .project {
-  border: 1px solid #7f7878;
   border-radius: 10px;
 }
 
@@ -58,6 +57,13 @@ header {
 
 .myProjectsContainer .randomAllImage {
   background: url("../img/RandomAllDark.svg") no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.myProjectsContainer .webeyeImage {
+  background: url("../img/WebeyeDark.svg") no-repeat;
   background-size: cover;
   height: 100%;
   width: 100%;
