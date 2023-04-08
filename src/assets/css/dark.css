@@ -55,12 +55,12 @@ header {
   width: 100%;
 }
 
-.myProjectsContainer .randomAllImage {
+/* .myProjectsContainer .randomAllImage {
   background: url("../img/RandomAllDark.svg") no-repeat;
   background-size: cover;
   height: 100%;
   width: 100%;
-}
+} */
 
 .myProjectsContainer .webeyeImage {
   background: url("../img/WebeyeDark.svg") no-repeat;
