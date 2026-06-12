@@ -108,7 +108,7 @@
         const L = LAYOUT[i % LAYOUT.length];
         const mat = new THREE.MeshPhysicalMaterial({
           transmission: 1.0, thickness: 0.85, roughness: 0.04, metalness: 0,
-          ior: 1.55, dispersion: L.disp,
+          ior: 1.55, dispersion: narrow ? 0 : L.disp,
           clearcoat: 1.0, clearcoatRoughness: 0.04, color: 0xffffff,
           specularIntensity: 1.4, specularColor: 0xffffff,
           emissive: new THREE.Color(L.emi), emissiveIntensity: 1.0,
@@ -177,9 +177,11 @@
       computeReveal();
 
       const clock = new THREE.Clock();
-      let raf = 0, running = false;
+      let raf = 0, running = false, lastRender = 0;
       const tmp = new THREE.Vector3();
       function frame() {
+        // mobile: cap the expensive glass-transmission + bloom pipeline to ~30fps
+        if (narrow) { const now = performance.now(); if (now - lastRender < 33) { raf = requestAnimationFrame(frame); return; } lastRender = now; }
         const dt = Math.min(clock.getDelta(), 0.05);
         const t = clock.elapsedTime;
         // Recompute scroll progress LIVE every frame (not just on throttled
@@ -298,7 +300,7 @@
       // Generous rootMargin keeps the loop alive while the section is anywhere
       // near the viewport, so the pin/unpin sweep is always rendered with the
       // live fade instead of pausing mid-transition.
-      const io = new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; onScreen ? play() : pause(); }, { threshold: 0, rootMargin: '80% 0px 80% 0px' });
+      const io = new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; onScreen ? play() : pause(); }, { threshold: 0, rootMargin: '25% 0px 25% 0px' });
       io.observe(mount);
       const onVis = () => (document.hidden ? pause() : play());
       document.addEventListener('visibilitychange', onVis);
@@ -372,5 +374,5 @@
     );
   }
 
-  window.Projects3D = Projects3D;
+  window.Projects3D = React.memo(Projects3D);
 })();

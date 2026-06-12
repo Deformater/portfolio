@@ -10,13 +10,21 @@
     border: '1px solid rgba(255,255,255,0.14)',
     boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.28), 0 24px 60px rgba(0,0,0,0.4)',
   };
+  // mobile: opaque card with NO backdrop-filter — backdrop-blur on many cards is
+  // the single biggest scroll-jank source on phones.
+  const frostSolid = {
+    background: 'linear-gradient(150deg, rgba(34,37,58,0.9), rgba(16,17,30,0.92) 62%)',
+    border: '1px solid rgba(255,255,255,0.12)',
+    boxShadow: '0 14px 40px rgba(0,0,0,0.45)',
+  };
   const gold = { fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontWeight: 400, color: 'var(--iris-gold)' };
 
   function Aura({ blobs }) {
+    const mobile = window.useMQ(window.MQ_MOBILE);
     return (
       <div style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none', overflow: 'hidden' }}>
         {blobs.map((b, i) => (
-          <div key={i} style={{ position: 'absolute', borderRadius: '50%', filter: 'blur(48px)', ...b }} />
+          <div key={i} style={{ position: 'absolute', borderRadius: '50%', filter: mobile ? 'none' : 'blur(48px)', ...b }} />
         ))}
       </div>
     );
@@ -26,10 +34,11 @@
   const warm = (extra) => ({ width: 460, height: 460, background: 'radial-gradient(circle, rgba(255,200,120,0.16), transparent 60%)', ...extra });
 
   function Frost({ children, style, interactive }) {
+    const base = window.useMQ(window.MQ_MOBILE) ? frostSolid : frost;
     const hover = e => { if (!interactive) return; e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.26)'; };
     const out = e => { if (!interactive) return; e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.14)'; };
     return (
-      <div onMouseEnter={hover} onMouseLeave={out} style={{ ...frost, borderRadius: 22, padding: 26, transition: 'transform .35s var(--ease-out), border-color .35s var(--ease-out)', ...style }}>
+      <div onMouseEnter={hover} onMouseLeave={out} style={{ ...base, borderRadius: 22, padding: 26, transition: 'transform .35s var(--ease-out), border-color .35s var(--ease-out)', ...style }}>
         {children}
       </div>
     );
@@ -205,7 +214,7 @@
           <SectionHead index="03" kicker="О себе" title={<>Инженер и <em style={gold}>фаундер</em></>} />
           <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr' : 'minmax(260px,360px) 1fr', gap: mobile ? 28 : 'clamp(28px,5vw,64px)', marginTop: mobile ? 36 : 56, alignItems: 'start' }}>
             <Frost style={{ padding: 8, borderRadius: 24, overflow: 'hidden', maxWidth: mobile ? 320 : 'none', margin: mobile ? '0 auto' : 0 }}>
-              <img src="assets/portrait.png" alt="Григорий Муравенко" style={{ display: 'block', width: '100%', aspectRatio: '4 / 5', objectFit: 'cover', objectPosition: 'center 16%', borderRadius: 18, background: 'rgba(255,255,255,0.04)' }} />
+              <img src="assets/portrait.jpg" alt="Григорий Муравенко" loading="lazy" decoding="async" style={{ display: 'block', width: '100%', aspectRatio: '4 / 5', objectFit: 'cover', objectPosition: 'center 16%', borderRadius: 18, background: 'rgba(255,255,255,0.04)' }} />
             </Frost>
             <div>
               <p style={{ font: 'var(--type-h3)', fontSize: 'clamp(20px,2.4vw,30px)', fontWeight: 500, lineHeight: 1.35, color: 'var(--text-body)', margin: 0, letterSpacing: '-0.01em' }}>
@@ -271,5 +280,5 @@
     );
   }
 
-  Object.assign(window, { CaseStudy, Achievements, About, Contact });
+  Object.assign(window, { CaseStudy, Achievements: React.memo(Achievements), About: React.memo(About), Contact: React.memo(Contact) });
 })();

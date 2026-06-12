@@ -27,8 +27,8 @@
           position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           padding: mobile ? '12px 16px' : '18px clamp(20px,5vw,48px)',
-          background: solid ? 'rgba(5,6,15,0.6)' : 'transparent',
-          backdropFilter: solid ? 'blur(14px)' : 'none', WebkitBackdropFilter: solid ? 'blur(14px)' : 'none',
+          background: solid ? (mobile ? 'rgba(5,6,15,0.96)' : 'rgba(5,6,15,0.6)') : 'transparent',
+          backdropFilter: (solid && !mobile) ? 'blur(14px)' : 'none', WebkitBackdropFilter: (solid && !mobile) ? 'blur(14px)' : 'none',
           borderBottom: solid ? '1px solid var(--line-2)' : '1px solid transparent',
           transition: 'background .4s var(--ease-out), border-color .4s',
         }}>
@@ -54,8 +54,7 @@
             <button onClick={() => setMenuOpen(o => !o)} aria-label="Меню" aria-expanded={menuOpen} style={{
               position: 'relative', width: 42, height: 42, flexShrink: 0, cursor: 'pointer',
               display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 4,
-              background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', borderRadius: 12,
-              backdropFilter: 'var(--glass-blur)', WebkitBackdropFilter: 'var(--glass-blur)',
+              background: 'rgba(255,255,255,0.07)', border: '1px solid var(--glass-border)', borderRadius: 12,
             }}>
               {[0, 1, 2].map(n => (
                 <span key={n} style={{
@@ -70,7 +69,7 @@
         {mobile && (
           <div style={{
             position: 'fixed', inset: 0, zIndex: 90,
-            background: 'rgba(5,6,15,0.74)', backdropFilter: 'blur(22px) saturate(1.3)', WebkitBackdropFilter: 'blur(22px) saturate(1.3)',
+            background: 'rgba(5,6,15,0.975)',
             display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '0 clamp(28px,9vw,52px)',
             opacity: menuOpen ? 1 : 0, visibility: menuOpen ? 'visible' : 'hidden', pointerEvents: menuOpen ? 'auto' : 'none',
             transition: 'opacity .3s var(--ease-out), visibility .3s var(--ease-out)',
@@ -96,7 +95,11 @@
     const { Button, ShaderField, Crystal } = window.PortfolioDesignSystem_22735b;
     const Icons = window.Icons;
     const mobile = window.useMQ(window.MQ_MOBILE);
-    const frost = {
+    const frost = mobile ? {
+      background: 'linear-gradient(150deg, rgba(40,42,68,0.92), rgba(18,19,34,0.93) 60%)',
+      border: '1px solid rgba(255,255,255,0.14)',
+      boxShadow: '0 18px 50px rgba(0,0,0,0.5)',
+    } : {
       background: 'linear-gradient(150deg, rgba(255,255,255,0.12), rgba(255,255,255,0.035) 60%)',
       backdropFilter: 'blur(22px) saturate(1.6)', WebkitBackdropFilter: 'blur(22px) saturate(1.6)',
       border: '1px solid rgba(255,255,255,0.16)',
@@ -181,5 +184,5 @@
     );
   }
 
-  Object.assign(window, { Nav, Hero, SectionHead });
+  Object.assign(window, { Nav, Hero: React.memo(Hero), SectionHead });
 })();

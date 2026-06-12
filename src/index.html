@@ -13,6 +13,8 @@
   body{margin:0;background:var(--bg);color:var(--text-body);font-family:var(--font-sans);}
   ::selection{background:rgba(176,107,255,0.35);}
   a{color:inherit;}
+  /* perf: backdrop-blur re-rasterises every scroll frame — kill it on phones (incl. the design-system primitives in _ds_bundle.js that can't be edited per-component) */
+  @media (max-width:760px){ *,*::before,*::after{ backdrop-filter:none !important; -webkit-backdrop-filter:none !important; } }
 </style>
 </head>
 <body>
