@@ -38,7 +38,6 @@
 
     return (
       <>
-        <window.Cursor />
         <window.Nav onNav={nav} active={active} />
         <main>
           <window.Hero onOpen={setOpenProject} featured={featured} />

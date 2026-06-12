@@ -103,6 +103,7 @@
   function Achievements() {
     const Icons = window.Icons;
     const SectionHead = window.SectionHead;
+    const mobile = window.useMQ(window.MQ_MOBILE);
     const a = window.PORTFOLIO.achievements, timeline = window.PORTFOLIO.timeline;
     const TYPE = {
       'олимпиада': 'var(--iris-gold)',
@@ -133,36 +134,58 @@
                 </div>
               ))}
             </div>
-            <div style={{ overflowX: 'auto', overflowY: 'hidden', paddingBottom: 6, WebkitOverflowScrolling: 'touch' }}>
-              <div style={{ position: 'relative', width: '100%', minWidth: timeline.length * 190, height: 400, display: 'grid', gridTemplateColumns: `repeat(${timeline.length}, minmax(150px,1fr))` }}>
-                {/* axis */}
-                <div style={{ position: 'absolute', left: 0, right: 0, top: '50%', height: 1, transform: 'translateY(-0.5px)', background: 'linear-gradient(90deg, transparent, var(--line-strong) 6%, var(--line-strong) 94%, transparent)' }} />
+            {mobile ? (
+              /* vertical timeline (mobile) — line on the left, full-width cards; top = earlier, bottom = later */
+              <div style={{ position: 'relative' }}>
+                <div style={{ position: 'absolute', left: 18, top: 0, bottom: 0, width: 1, transform: 'translateX(-0.5px)', background: 'linear-gradient(180deg, transparent, var(--line-strong) 3%, var(--line-strong) 97%, transparent)' }} />
                 {timeline.map((e, i) => {
-                  const up = i % 2 === 0;
                   const c = TYPE[e.type] || 'var(--iris-gold)';
                   return (
-                    <div key={i} style={{ position: 'relative' }}>
-                      {/* dot */}
-                      <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: 13, height: 13, borderRadius: '50%', background: c, boxShadow: `0 0 0 4px var(--bg), 0 0 16px 2px ${c}`, zIndex: 2 }} />
-                      {/* connector */}
-                      <div style={{ position: 'absolute', left: '50%', transform: 'translateX(-0.5px)', width: 1, height: 28, background: `linear-gradient(${up ? '180deg' : '0deg'}, ${c}, transparent)`, ...(up ? { bottom: '50%' } : { top: '50%' }) }} />
-                      {/* card */}
-                      <div style={{ position: 'absolute', left: 9, right: 9, ...(up ? { bottom: 'calc(50% + 28px)' } : { top: 'calc(50% + 28px)' }) }}>
-                        <Frost interactive style={{ padding: '15px 17px' }}>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 9 }}>
-                            <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.06em', color: c }}>{e.year}</span>
-                            <span style={{ width: 3, height: 3, borderRadius: '50%', background: 'var(--text-faint)' }} />
-                            <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--text-faint)' }}>{e.type}</span>
-                          </div>
-                          <div style={{ fontFamily: 'var(--font-sans)', fontSize: 16, fontWeight: 600, letterSpacing: '-0.01em', color: 'var(--text-heading)', marginBottom: 6 }}>{e.place}</div>
-                          <div style={{ fontSize: 13, lineHeight: 1.5, color: 'var(--text-muted)' }}>{e.title}</div>
-                        </Frost>
-                      </div>
+                    <div key={i} style={{ position: 'relative', paddingLeft: 46, paddingBottom: 'clamp(14px,3vw,22px)' }}>
+                      <div style={{ position: 'absolute', left: 18, top: 22, transform: 'translate(-50%,-50%)', width: 14, height: 14, borderRadius: '50%', background: c, boxShadow: `0 0 0 4px var(--bg), 0 0 16px 2px ${c}`, zIndex: 2 }} />
+                      <div style={{ position: 'absolute', left: 18, top: 22, width: 26, height: 1, transform: 'translateY(-0.5px)', background: `linear-gradient(90deg, ${c}, transparent)` }} />
+                      <Frost interactive style={{ padding: '14px 16px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 9 }}>
+                          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.06em', color: c }}>{e.year}</span>
+                          <span style={{ width: 3, height: 3, borderRadius: '50%', background: 'var(--text-faint)' }} />
+                          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--text-faint)' }}>{e.type}</span>
+                        </div>
+                        <div style={{ fontFamily: 'var(--font-sans)', fontSize: 16, fontWeight: 600, letterSpacing: '-0.01em', color: 'var(--text-heading)', marginBottom: 6 }}>{e.place}</div>
+                        <div style={{ fontSize: 13, lineHeight: 1.5, color: 'var(--text-muted)', overflowWrap: 'anywhere' }}>{e.title}</div>
+                      </Frost>
                     </div>
                   );
                 })}
               </div>
-            </div>
+            ) : (
+              /* horizontal timeline (desktop) — original */
+              <div style={{ overflowX: 'auto', overflowY: 'hidden', paddingBottom: 6, WebkitOverflowScrolling: 'touch' }}>
+                <div style={{ position: 'relative', width: '100%', minWidth: timeline.length * 190, height: 400, display: 'grid', gridTemplateColumns: `repeat(${timeline.length}, minmax(150px,1fr))` }}>
+                  <div style={{ position: 'absolute', left: 0, right: 0, top: '50%', height: 1, transform: 'translateY(-0.5px)', background: 'linear-gradient(90deg, transparent, var(--line-strong) 6%, var(--line-strong) 94%, transparent)' }} />
+                  {timeline.map((e, i) => {
+                    const up = i % 2 === 0;
+                    const c = TYPE[e.type] || 'var(--iris-gold)';
+                    return (
+                      <div key={i} style={{ position: 'relative' }}>
+                        <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: 13, height: 13, borderRadius: '50%', background: c, boxShadow: `0 0 0 4px var(--bg), 0 0 16px 2px ${c}`, zIndex: 2 }} />
+                        <div style={{ position: 'absolute', left: '50%', transform: 'translateX(-0.5px)', width: 1, height: 28, background: `linear-gradient(${up ? '180deg' : '0deg'}, ${c}, transparent)`, ...(up ? { bottom: '50%' } : { top: '50%' }) }} />
+                        <div style={{ position: 'absolute', left: 9, right: 9, ...(up ? { bottom: 'calc(50% + 28px)' } : { top: 'calc(50% + 28px)' }) }}>
+                          <Frost interactive style={{ padding: '15px 17px' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 9 }}>
+                              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.06em', color: c }}>{e.year}</span>
+                              <span style={{ width: 3, height: 3, borderRadius: '50%', background: 'var(--text-faint)' }} />
+                              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--text-faint)' }}>{e.type}</span>
+                            </div>
+                            <div style={{ fontFamily: 'var(--font-sans)', fontSize: 16, fontWeight: 600, letterSpacing: '-0.01em', color: 'var(--text-heading)', marginBottom: 6 }}>{e.place}</div>
+                            <div style={{ fontSize: 13, lineHeight: 1.5, color: 'var(--text-muted)' }}>{e.title}</div>
+                          </Frost>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
           </Frost>
         </div>
       </section>
@@ -174,13 +197,14 @@
     const { Tag } = window[NS];
     const SectionHead = window.SectionHead;
     const stack = window.PORTFOLIO.stack;
+    const mobile = window.useMQ(window.MQ_MOBILE);
     return (
       <section id="about" data-screen-label="О себе" style={{ position: 'relative', overflow: 'hidden', background: 'var(--bg)', padding: 'var(--section-y) 0' }}>
         <Aura blobs={[warm({ left: '38%', top: '8%' }), violet({ right: '-8%', bottom: '-10%' })]} />
         <div style={{ position: 'relative', zIndex: 2, maxWidth: 'var(--container)', margin: '0 auto', padding: '0 clamp(20px,5vw,48px)' }}>
           <SectionHead index="03" kicker="О себе" title={<>Инженер и <em style={gold}>фаундер</em></>} />
-          <div style={{ display: 'grid', gridTemplateColumns: 'minmax(260px,360px) 1fr', gap: 'clamp(28px,5vw,64px)', marginTop: 56, alignItems: 'start' }}>
-            <Frost style={{ padding: 8, borderRadius: 24, overflow: 'hidden' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr' : 'minmax(260px,360px) 1fr', gap: mobile ? 28 : 'clamp(28px,5vw,64px)', marginTop: mobile ? 36 : 56, alignItems: 'start' }}>
+            <Frost style={{ padding: 8, borderRadius: 24, overflow: 'hidden', maxWidth: mobile ? 320 : 'none', margin: mobile ? '0 auto' : 0 }}>
               <img src="assets/portrait.png" alt="Григорий Муравенко" style={{ display: 'block', width: '100%', aspectRatio: '4 / 5', objectFit: 'cover', objectPosition: 'center 16%', borderRadius: 18, background: 'rgba(255,255,255,0.04)' }} />
             </Frost>
             <div>

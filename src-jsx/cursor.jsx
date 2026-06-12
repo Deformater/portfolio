@@ -1,6 +1,6 @@
 // Custom crosshair cursor + small icon set, exported to window.
 (function () {
-  const { useRef, useEffect } = React;
+  const { useRef, useEffect, useState } = React;
 
   // Ref-based cursor: position is written straight to the DOM node inside a
   // single rAF tick. No React state, so moving the mouse never triggers a
@@ -67,6 +67,21 @@
     spark: p => I(<path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18" />, p),
   };
 
+  // Reactive media-query hook → drives the mobile/desktop style switches.
+  function useMQ(query) {
+    const [m, setM] = useState(() => (typeof matchMedia !== 'undefined' ? matchMedia(query).matches : false));
+    useEffect(() => {
+      const mq = matchMedia(query);
+      const on = () => setM(mq.matches);
+      on();
+      mq.addEventListener ? mq.addEventListener('change', on) : mq.addListener(on);
+      return () => { mq.removeEventListener ? mq.removeEventListener('change', on) : mq.removeListener(on); };
+    }, [query]);
+    return m;
+  }
+
+  window.useMQ = useMQ;
+  window.MQ_MOBILE = '(max-width: 760px)';
   window.Cursor = Cursor;
   window.Icons = Icons;
 })();

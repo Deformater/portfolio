@@ -29,12 +29,26 @@
     const labelRefs = useRef([]);
     const openRef = useRef(onOpen);
     openRef.current = onOpen;
+    const mobile = window.useMQ(window.MQ_MOBILE);
+
+    // mobile: make the page snap one crystal per screen while Projects is in view
+    useEffect(() => {
+      if (!mobile) return;
+      const el = document.documentElement;
+      const prev = el.style.scrollSnapType;
+      el.style.scrollSnapType = 'y proximity';
+      return () => { el.style.scrollSnapType = prev; };
+    }, [mobile]);
 
     useEffect(() => {
       const THREE = window.THREE;
       if (!THREE || !window.UnrealBloomPass) return;
       const mount = mountRef.current;
       let W = mount.clientWidth, H = mount.clientHeight;
+      // On portrait / narrow viewports the wide x-spread (±4) pushes the
+      // crystals off the orthographic frustum, so center them (x→0) and shrink
+      // a touch — each then rises through the middle one at a time on scroll.
+      const narrow = window.matchMedia(window.MQ_MOBILE).matches;
 
       const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: false, powerPreference: 'high-performance' });
       renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1));
@@ -104,11 +118,14 @@
         });
         const geo = crystalGeo(L.seed); geoms.push(geo);
         const mesh = new THREE.Mesh(geo, mat);
-        const sc = L.s;
-        mesh.position.set(L.x, 0, 0);
+        const sc = L.s * (narrow ? 0.72 : 1);
+        const mx = narrow ? 0 : L.x;
+        // mobile: space crystals exactly one screen apart → vertical snap-slider
+        const cp = narrow ? i / projects.length : L.cp;
+        mesh.position.set(mx, 0, 0);
         mesh.scale.set(sc, sc * 1.08, sc * 0.92);
         mesh.rotation.set(0.2, L.rot, L.rot * 0.3);
-        mesh.userData = { proj, i, phase: i * 2.0, rs: (i % 2 ? -1 : 1) * 0.12, baseS: sc, hov: 0, app: 0, x: L.x, cp: L.cp };
+        mesh.userData = { proj, i, phase: i * 2.0, rs: (i % 2 ? -1 : 1) * 0.12, baseS: sc, hov: 0, app: 0, x: mx, cp: cp };
         scene.add(mesh); meshes.push(mesh);
       });
 
@@ -129,7 +146,16 @@
         ndc.y = -((e.clientY - r.top) / r.height) * 2 + 1;
       };
       const onLeave = () => { ndc.set(-2, -2); };
-      const onClick = () => { if (hovered >= 0) openRef.current(projects[hovered]); };
+      const onClick = () => {
+        if (narrow) {
+          // no hover on touch — tap opens whichever crystal is centered now
+          let best = -1, bd = 1e9;
+          meshes.forEach(m => { const u = m.userData; if (u.app > 0.4 && Math.abs(u.wy || 0) < bd) { bd = Math.abs(u.wy || 0); best = u.i; } });
+          if (best >= 0) openRef.current(projects[best]);
+          return;
+        }
+        if (hovered >= 0) openRef.current(projects[hovered]);
+      };
       renderer.domElement.addEventListener('pointermove', onMove);
       renderer.domElement.addEventListener('pointerleave', onLeave);
       renderer.domElement.addEventListener('click', onClick);
@@ -174,7 +200,8 @@
         }
         if (nh !== hovered) { hovered = nh; renderer.domElement.style.cursor = nh >= 0 ? 'pointer' : 'default'; }
 
-        const K = 25;
+        const K = narrow ? 10 * projects.length : 25;
+        const lift = narrow ? 1.3 : 0;   // mobile: raise crystals above centre so the label sits higher
         // Fade the WHOLE canvas out near the pinned-range boundaries (tracks
         // scroll exactly, every frame — no animation lag). This guarantees the
         // canvas is transparent the instant it pins/unpins, so the moving
@@ -214,7 +241,7 @@
           m.material.envMapIntensity = 3.4 + u.hov * 2.2;
 
           const float = Math.sin(t * 0.5 + u.phase) * 0.16;
-          m.position.y = wy + float;
+          m.position.y = wy + float + lift;
           const s = u.baseS * (1 + u.hov * 0.05);
           m.scale.set(s, s * 1.08, s * 0.92);
           m.rotation.y += dt * u.rs;
@@ -223,7 +250,7 @@
           // label goes to the side OPPOSITE the crystal (where the space is):
           // crystal on the left (x<0) → label on the right, and vice-versa —
           // so they alternate in the same zig-zag rhythm as the crystals.
-          tmp.set(u.x, wy, 0).project(camera);
+          tmp.set(u.x, wy + lift, 0).project(camera);
           const sx = (tmp.x * 0.5 + 0.5) * cRect.width;
           const sy = (-tmp.y * 0.5 + 0.5) * cRect.height;
           const ppu = cRect.width / (2 * halfW);            // px per world unit
@@ -231,18 +258,27 @@
           const labelW = 300, gap = 36;
           const lab = labelRefs.current[u.i];
           if (lab) {
-            if (u.x < 0) {                                   // crystal left → label right
+            if (narrow) {
+              // centered under the crystal; shown when this crystal is the one
+              // in the middle of the screen (there is no hover on touch).
+              lab.style.textAlign = 'center';
+              const ly = sy + (u.baseS * 1.2) * ppu + 18;
+              lab.style.transform = `translate(-50%,0) translate(${sx}px, ${ly}px)`;
+              const centered = Math.max(0, Math.min(1, 1 - Math.abs(wy) / 2.4));
+              lab.style.opacity = (u.app * centered).toFixed(3);
+            } else if (u.x < 0) {                            // crystal left → label right
               let lx = sx + crystalHalfPx + gap;
               lx = Math.min(cRect.width - labelW - 28, lx);
               lab.style.textAlign = 'left';
               lab.style.transform = `translate(0,-50%) translate(${lx}px, ${sy}px)`;
+              lab.style.opacity = (u.hov * u.app).toFixed(3);
             } else {                                          // crystal right → label left
               let lx = sx - crystalHalfPx - gap;
               lx = Math.max(labelW + 28, lx);
               lab.style.textAlign = 'right';
               lab.style.transform = `translate(-100%,-50%) translate(${lx}px, ${sy}px)`;
+              lab.style.opacity = (u.hov * u.app).toFixed(3);
             }
-            lab.style.opacity = (u.hov * u.app).toFixed(3);
           }
         });
 
@@ -301,8 +337,11 @@
           <SectionHead index="01" kicker="Проекты — Labs" title={<>Каждый кристалл — <em style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontWeight: 400, color: 'var(--iris-gold)' }}>проект</em></>} />
         </div>
 
-        {/* tall stage → sticky canvas pinned while you scroll a little through the crystals */}
-        <div ref={stageRef} style={{ position: 'relative', height: '165vh', marginTop: '-12vh' }}>
+        {/* tall stage → sticky canvas pinned while you scroll through the crystals.
+            mobile: one 100vh screen per crystal (+1 trailing screen) for a snap-slider. */}
+        <div ref={stageRef} style={mobile
+          ? { position: 'relative', height: `${(projects.length + 1) * 100}vh` }
+          : { position: 'relative', height: '165vh', marginTop: '-12vh' }}>
           <div ref={mountRef} style={{ position: 'sticky', top: 0, width: '100%', height: '100vh', zIndex: 1 }} />
           <div style={{ position: 'sticky', top: 0, height: '100vh', marginTop: '-100vh', zIndex: 2, pointerEvents: 'none' }}>
             {projects.map((p, i) => (
@@ -324,6 +363,10 @@
               </div>
             ))}
           </div>
+          {/* mobile: one full-screen snap target per crystal (the +1 buffer screen has none) */}
+          {mobile && projects.map((p, i) => (
+            <div key={'snap' + i} aria-hidden style={{ position: 'absolute', left: 0, right: 0, top: `${i * 100}vh`, height: '100vh', scrollSnapAlign: 'center', pointerEvents: 'none' }} />
+          ))}
         </div>
       </section>
     );
