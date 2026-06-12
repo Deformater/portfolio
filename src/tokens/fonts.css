@@ -1,0 +1,11 @@
+/* ============================================================
+   FONTS — Муравенко Portfolio
+   Substitutes for the Noomo licensed pairing (flagged to user):
+     · Body / UI grotesque  → Onest            (full Cyrillic)
+     · Editorial italic accent → Playfair Display (full Cyrillic)
+     · Mono / code & labels → JetBrains Mono     (Cyrillic)
+   Served from Google Fonts CDN. Swap these @font-face/@import
+   targets for self-hosted woff2 if licensed files are provided.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=JetBrains+Mono:wght@400;500;600&display=swap');

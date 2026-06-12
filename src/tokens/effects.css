@@ -1,0 +1,47 @@
+/* ============================================================
+   EFFECTS — Муравенко Portfolio
+   Radii · glass / blur · shadows · motion. The brand leans on
+   glassmorphism (backdrop-blur + inset highlight) over hard
+   shadows, and slow eased motion (no bounce).
+   ============================================================ */
+
+:root {
+  /* ---- Radii ---- */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 26px;
+  --radius-pill: 999px;
+
+  /* ---- Blur ---- */
+  --blur-glass: 16px;   /* @kind other */
+  --blur-strong: 28px;  /* @kind other */
+
+  /* ---- Glass recipe ---- */
+  --glass-bg: rgba(255,255,255,0.035);
+  --glass-bg-hover: rgba(255,255,255,0.06);
+  --glass-border: rgba(255,255,255,0.10);
+  --glass-highlight: inset 0 1px 0 rgba(255,255,255,0.10); /* @kind shadow */
+  --glass-blur: blur(16px) saturate(1.3); /* @kind other */
+
+  /* ---- Shadows (used sparingly on dark) ---- */
+  --shadow-card: 0 30px 70px rgba(0,0,0,0.45);
+  --shadow-float: 0 20px 60px rgba(0,0,0,0.5), var(--glass-highlight);
+  --shadow-glow-iris: 0 12px 40px rgba(176,107,255,0.28);
+  --shadow-inset-line: var(--glass-highlight);
+
+  /* ---- Motion ---- */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);      /* @kind other */
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);   /* @kind other */
+  --ease-glide: cubic-bezier(0.16, 1, 0.3, 1);     /* @kind other */
+  --dur-fast: 0.18s;    /* @kind other */
+  --dur-base: 0.3s;     /* @kind other */
+  --dur-slow: 0.5s;     /* @kind other */
+  --dur-reveal: 0.9s;   /* @kind other */
+
+  /* ============ SEMANTIC ALIASES ============ */
+  --surface-card: var(--glass-bg);
+  --radius-card: var(--radius-lg);
+  --transition-base: all var(--dur-base) var(--ease-out); /* @kind other */
+}

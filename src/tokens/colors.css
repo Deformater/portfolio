@@ -1,0 +1,78 @@
+/* ============================================================
+   COLORS — Муравенко Portfolio
+   Deep cosmic dark base + iridescent (violet→magenta→cyan)
+   accent family. Light-surface tokens exist for docs/case-study
+   reading views; the brand hero/projects live in the dark.
+   ============================================================ */
+
+:root {
+  /* ---- Base neutrals (cosmic dark) ---- */
+  --night-900: #05060f;   /* page background */
+  --night-850: #080a16;
+  --night-800: #0b0e1d;   /* elevated panel */
+  --night-700: #11142a;
+  --night-600: #181c38;   /* hairline-lit surface */
+  --night-550: #1b2040;
+  --night-450: #2a3060;
+
+  /* ---- Ink / text ---- */
+  --ink-100: #f3f2fb;   /* hi-contrast headings on dark */
+  --ink-200: #eceaf5;   /* body on dark */
+  --ink-300: #b7b6cf;   /* secondary */
+  --ink-400: #8b8aa3;   /* muted / captions */
+  --ink-500: #5d5c77;   /* faint / disabled */
+
+  /* ---- Iridescent accent family ---- */
+  --iris-violet:  #b06bff;
+  --iris-indigo:  #7a6bff;
+  --iris-magenta: #ff7ec2;
+  --iris-pink:    #ff5aa0;
+  --iris-cyan:    #7ee0ff;
+  --iris-blue:    #5aa9ff;
+  --iris-gold:    #ffd98a;   /* rare chromatic highlight */
+
+  /* ---- Signature gradients ---- */
+  --grad-iris: linear-gradient(100deg, #c9a0ff 0%, #ff7ec2 52%, #7ee0ff 100%); /* @kind color */
+  --grad-iris-soft: linear-gradient(120deg, #b06bff, #ff7ec2 60%, #7ee0ff); /* @kind color */
+  --grad-aurora: radial-gradient(120% 120% at 30% 20%, rgba(176,107,255,0.35), transparent 55%),
+                 radial-gradient(120% 120% at 80% 70%, rgba(126,224,255,0.25), transparent 55%); /* @kind color */
+  --grad-beam: linear-gradient(to bottom, rgba(150,170,255,0.55), transparent); /* @kind color */
+
+  /* ---- Lines & glass borders ---- */
+  --line-1: rgba(255,255,255,0.10);
+  --line-2: rgba(255,255,255,0.06);
+  --line-strong: rgba(255,255,255,0.18);
+
+  /* ---- Light reading surface (docs / case study body) ---- */
+  --paper: #f6f5fb;
+  --paper-2: #ecebf4;
+  --paper-ink: #14152a;
+  --paper-muted: #585774;
+
+  /* ---- Status ---- */
+  --ok: #6ee7a8;
+  --warn: #ffd98a;
+  --err: #ff7a8a;
+
+  /* ============ SEMANTIC ALIASES ============ */
+  --bg: var(--night-900);
+  --bg-elevated: var(--night-800);
+  --surface-glass: rgba(255,255,255,0.035);
+  --surface-glass-hover: rgba(255,255,255,0.06);
+  --border-glass: var(--line-1);
+  --border-glass-strong: var(--line-strong);
+
+  --text-heading: var(--ink-100);
+  --text-body: var(--ink-200);
+  --text-secondary: var(--ink-300);
+  --text-muted: var(--ink-400);
+  --text-faint: var(--ink-500);
+  --text-on-accent: #0a0b16;
+
+  --accent: var(--iris-violet);
+  --accent-2: var(--iris-magenta);
+  --accent-3: var(--iris-cyan);
+  --accent-grad: var(--grad-iris);
+
+  --focus-ring: rgba(176,107,255,0.55);
+}

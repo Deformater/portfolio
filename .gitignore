@@ -1,0 +1,5 @@
+# Build cache (fetched @babel/standalone for build.mjs)
+.cache/
+
+# Local Claude Code settings (machine-specific)
+.claude/settings.local.json
