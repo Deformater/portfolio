@@ -51,9 +51,7 @@
       const narrow = window.matchMedia(window.MQ_MOBILE).matches;
 
       const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: false, powerPreference: 'high-performance' });
-      // mobile: render the expensive glass/transmission pipeline below native
-      // resolution (it's fragment-bound) and upscale — the biggest GPU win.
-      renderer.setPixelRatio(narrow ? 0.75 : Math.min(window.devicePixelRatio || 1, 1));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1));
       renderer.setSize(W, H);
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
       renderer.toneMappingExposure = 1.75;
@@ -108,16 +106,26 @@
       const geoms = [], meshes = [];
       projects.forEach((proj, i) => {
         const L = LAYOUT[i % LAYOUT.length];
-        const mat = new THREE.MeshPhysicalMaterial({
-          transmission: 1.0, thickness: 0.85, roughness: 0.04, metalness: 0,
-          ior: 1.55, dispersion: narrow ? 0 : L.disp,
-          clearcoat: narrow ? 0 : 1.0, clearcoatRoughness: 0.04, color: 0xffffff,
-          specularIntensity: 1.4, specularColor: 0xffffff,
-          emissive: new THREE.Color(L.emi), emissiveIntensity: 1.0,
-          attenuationColor: new THREE.Color(L.att), attenuationDistance: 1.7,
-          envMapIntensity: 3.4, normalMap: noiseTex, normalScale: new THREE.Vector2(0.09, 0.09),
-          transparent: true, opacity: 0, side: THREE.DoubleSide, flatShading: true,
-        });
+        // mobile: a cheap reflective/translucent gem — NO transmission and NO
+        // bloom. Real-time glass transmission re-renders the scene every frame and
+        // is what lagged; a standard material with env reflections is ~free.
+        const mat = narrow
+          ? new THREE.MeshStandardMaterial({
+              color: new THREE.Color(L.att), metalness: 0, roughness: 0.18,
+              emissive: new THREE.Color(L.att),
+              envMapIntensity: 2.4, transparent: true, opacity: 0,
+              side: THREE.DoubleSide, flatShading: true,
+            })
+          : new THREE.MeshPhysicalMaterial({
+              transmission: 1.0, thickness: 0.85, roughness: 0.04, metalness: 0,
+              ior: 1.55, dispersion: L.disp,
+              clearcoat: 1.0, clearcoatRoughness: 0.04, color: 0xffffff,
+              specularIntensity: 1.4, specularColor: 0xffffff,
+              emissive: new THREE.Color(L.emi), emissiveIntensity: 1.0,
+              attenuationColor: new THREE.Color(L.att), attenuationDistance: 1.7,
+              envMapIntensity: 3.4, normalMap: noiseTex, normalScale: new THREE.Vector2(0.09, 0.09),
+              transparent: true, opacity: 0, side: THREE.DoubleSide, flatShading: true,
+            });
         const geo = crystalGeo(L.seed); geoms.push(geo);
         const mesh = new THREE.Mesh(geo, mat);
         const sc = L.s * (narrow ? 0.72 : 1);
@@ -131,12 +139,16 @@
         scene.add(mesh); meshes.push(mesh);
       });
 
-      // bloom composer
-      const composer = new window.EffectComposer(renderer);
-      composer.addPass(new window.RenderPass(scene, camera));
-      const bloom = new window.UnrealBloomPass(new THREE.Vector2(W, H), 0.85, 0.5, 0.7);
-      composer.addPass(bloom);
-      composer.setSize(W, H);
+      // bloom composer — desktop only. On mobile we render the scene directly
+      // (no post-processing passes), so there is no per-frame bloom cost.
+      let composer = null;
+      if (!narrow) {
+        composer = new window.EffectComposer(renderer);
+        composer.addPass(new window.RenderPass(scene, camera));
+        const bloom = new window.UnrealBloomPass(new THREE.Vector2(W, H), 0.85, 0.5, 0.7);
+        composer.addPass(bloom);
+        composer.setSize(W, H);
+      }
 
       // interaction
       const ray = new THREE.Raycaster();
@@ -240,9 +252,9 @@
           const ht = (u.i === hovered) ? 1 : 0;
           u.hov += (ht - u.hov) * 0.12;
 
-          m.material.opacity = u.app;
-          m.material.emissiveIntensity = 1.0 + u.hov * 1.8; // glow brighter on hover
-          m.material.envMapIntensity = 3.4 + u.hov * 2.2;
+          m.material.opacity = narrow ? u.app * 0.78 : u.app;        // mobile gem stays translucent
+          m.material.emissiveIntensity = narrow ? (0.5 + u.hov * 0.6) : (1.0 + u.hov * 1.8);
+          m.material.envMapIntensity = narrow ? (1.7 + u.hov * 1.2) : (3.4 + u.hov * 2.2);
 
           const float = Math.sin(t * 0.5 + u.phase) * 0.16;
           m.position.y = wy + float + lift;
@@ -286,7 +298,7 @@
           }
         });
 
-        composer.render();
+        if (narrow) renderer.render(scene, camera); else composer.render();
         raf = requestAnimationFrame(frame);
       }
 
@@ -309,7 +321,7 @@
 
       const onResize = () => {
         W = mount.clientWidth; H = mount.clientHeight;
-        renderer.setSize(W, H); composer.setSize(W, H);
+        renderer.setSize(W, H); if (composer) composer.setSize(W, H);
         halfW = halfH * (W / H);
         camera.left = -halfW; camera.right = halfW; camera.top = halfH; camera.bottom = -halfH;
         camera.updateProjectionMatrix();
@@ -326,7 +338,7 @@
         renderer.domElement.removeEventListener('pointermove', onMove);
         renderer.domElement.removeEventListener('pointerleave', onLeave);
         renderer.domElement.removeEventListener('click', onClick);
-        composer.dispose && composer.dispose();
+        composer && composer.dispose && composer.dispose();
         renderer.dispose();
         meshes.forEach(m => m.material.dispose());
         geoms.forEach(g => g.dispose());
