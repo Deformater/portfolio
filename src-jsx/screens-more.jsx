@@ -85,7 +85,7 @@
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(170px,1fr))', gap: 16, marginBottom: 64 }}>
             {p.metrics.map(([v, l]) => (
               <Frost key={l} style={{ padding: 'var(--space-6)' }}>
-                <div style={{ fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: v.length > 12 ? 'clamp(17px,1.9vw,22px)' : 'clamp(28px,3.2vw,40px)', letterSpacing: '-0.02em', color: 'var(--text-heading)', whiteSpace: 'nowrap' }}>{v}</div>
+                <div style={{ fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: v.length > 12 ? 'clamp(14px,3.4vw,21px)' : 'clamp(28px,3.2vw,40px)', letterSpacing: '-0.02em', lineHeight: 1.2, color: 'var(--text-heading)', whiteSpace: v.length > 12 ? 'normal' : 'nowrap', overflowWrap: 'break-word' }}>{v}</div>
                 <div style={{ color: 'var(--text-muted)', fontSize: 14, marginTop: 6 }}>{l}</div>
               </Frost>
             ))}

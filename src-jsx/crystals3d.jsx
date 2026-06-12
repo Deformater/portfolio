@@ -51,7 +51,9 @@
       const narrow = window.matchMedia(window.MQ_MOBILE).matches;
 
       const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: false, powerPreference: 'high-performance' });
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1));
+      // mobile: render the expensive glass/transmission pipeline below native
+      // resolution (it's fragment-bound) and upscale — the biggest GPU win.
+      renderer.setPixelRatio(narrow ? 0.75 : Math.min(window.devicePixelRatio || 1, 1));
       renderer.setSize(W, H);
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
       renderer.toneMappingExposure = 1.75;
@@ -109,7 +111,7 @@
         const mat = new THREE.MeshPhysicalMaterial({
           transmission: 1.0, thickness: 0.85, roughness: 0.04, metalness: 0,
           ior: 1.55, dispersion: narrow ? 0 : L.disp,
-          clearcoat: 1.0, clearcoatRoughness: 0.04, color: 0xffffff,
+          clearcoat: narrow ? 0 : 1.0, clearcoatRoughness: 0.04, color: 0xffffff,
           specularIntensity: 1.4, specularColor: 0xffffff,
           emissive: new THREE.Color(L.emi), emissiveIntensity: 1.0,
           attenuationColor: new THREE.Color(L.att), attenuationDistance: 1.7,
