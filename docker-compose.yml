@@ -1,3 +1,4 @@
+version: "3"
 services:
   client:
     image: nginx
@@ -6,10 +7,10 @@ services:
     volumes:
       - ./src:/usr/share/nginx/html
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
-    networks:
-        - default
-
+    ports:
+      - "8765:80"
+      - "8766:443"
 networks:
   default:
     external: true
-    name: default_network
+    name: npm_net
